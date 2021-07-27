@@ -1,0 +1,54 @@
+﻿@model List<StackOverflowTop1000.Models.TagList>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista najczęściej używanych tagów oraz procent udziału w całości</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">lp.</th>
+
+            <th scope="col">Nazwa</th>
+
+            <th scope="col">Ile razy użyte</th>
+
+            <th scope="col">procent w całości</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int i = 1;
+            int allCount = 0;
+            decimal allPercent = 0;}
+        @foreach (var item in Model)
+        {
+            foreach (var tag in item.Items)
+            {
+                <tr>
+                    <td><span>@i</span></td>
+                    @{
+                        i++;
+                    }
+
+                    <td>@tag.name</td>
+
+                    <td>@tag.count</td>
+                    @{ allCount += tag.count;}
+
+                    <td>@tag.popularityPercent</td>
+                    @{ allPercent += tag.popularityPercent;}
+                </tr>
+            }
+        }
+        <tr>
+            <td></td>
+
+            <td><strong>Podsumowanie</strong></td>
+
+            <td>Razem użyć: <strong>@allCount </strong></td>
+
+            <td>Procent razem: @allPercent</td>
+        </tr>
+    </tbody>
+</table>
