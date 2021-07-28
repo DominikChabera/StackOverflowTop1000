@@ -24,6 +24,7 @@ namespace StackOverflowTop1000.Controllers
         {
             try
             {
+                Get1000TopTag();
                 var tag = ConvertJsonToObject();
                 CalculateTheTotalCountOfTheTags(tag);
                 CalculatePercentPopularityOfTag(tag);
@@ -58,7 +59,9 @@ namespace StackOverflowTop1000.Controllers
                     {
                         _resultJson.Add(result.Content.ReadAsStringAsync().Result);
                     }
-                    Thread.Sleep(2000); // Zatrzymuje program na 2 sek. Co pętla, aby nie obciążać za bardzo serwera i aby uniknąć rozłączenie w wyniku ograniczeń narzuconych przez API.
+                    //Na początku zatrzymywałem program, aby nie dopuścić do zbyt nadmiernego wykorzystania API. Ale w czasie testowania okazało się, że nie muszę tego robić.
+                    //zostawiam fragment kodu może kiedys będzie potrzeby. Może kiedys bedzie trzeba pobrać więcej tagów wtedy będzie to potrzebne z dokumentacji wychodzi że można 30 zapytań na sek.
+                    //Thread.Sleep(2000); // Zatrzymuje program na 2 sek. Co pętla, aby nie obciążać za bardzo serwera i aby uniknąć rozłączenie w wyniku ograniczeń narzuconych przez API.
                 }
             }
         }
