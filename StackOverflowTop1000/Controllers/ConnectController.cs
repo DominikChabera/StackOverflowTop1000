@@ -38,7 +38,6 @@ namespace StackOverflowTop1000.Controllers
         }
 
 
-
         private void Get1000TopTag()
         {
             for (int i = 1; i <= _page; i++) // Ograniczenie API to 100 tagów na stronę wiec muszę mieć 10 różnych stron pobranych.
@@ -59,9 +58,6 @@ namespace StackOverflowTop1000.Controllers
                     {
                         _resultJson.Add(result.Content.ReadAsStringAsync().Result);
                     }
-                    //Na początku zatrzymywałem program, aby nie dopuścić do zbyt nadmiernego wykorzystania API. Ale w czasie testowania okazało się, że nie muszę tego robić.
-                    //zostawiam fragment kodu może kiedys będzie potrzeby. Może kiedys bedzie trzeba pobrać więcej tagów wtedy będzie to potrzebne z dokumentacji wychodzi że można 30 zapytań na sek.
-                    //Thread.Sleep(2000); // Zatrzymuje program na 2 sek. Co pętla, aby nie obciążać za bardzo serwera i aby uniknąć rozłączenie w wyniku ograniczeń narzuconych przez API.
                 }
             }
         }
